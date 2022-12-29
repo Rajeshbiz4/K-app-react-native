@@ -8,32 +8,33 @@ export default function LoginScreen(props) {
 const { navigation } = props;
 const fetchPost = async () => {
     let userToken = '';
-    fetch('http://34.217.126.91:8000/login', {
-      method: 'POST',
-      headers: {
-                   'Accept': 'application/json',
-                   'Content-Type': 'application/json',
-                 },
-       // body : 
-       body: JSON.stringify({
-             "mobile": username,
-             "password": password,
-            })
-       })
-       .then((response) => response.json())
-       .then((response) => {
+    navigation.replace('Home');
+    // fetch('http://34.217.126.91:8000/login', {
+    //   method: 'POST',
+    //   headers: {
+    //                'Accept': 'application/json',
+    //                'Content-Type': 'application/json',
+    //              },
+    //    // body : 
+    //    body: JSON.stringify({
+    //          "mobile": username,
+    //          "password": password,
+    //         })
+    //    })
+    //    .then((response) => response.json())
+    //    .then((response) => {
         
-        if(response.token !=''){
-            setToken(response.token);
-            navigation.navigate('Home');
-        }
-        else
-        {
-            alert("Please enter correct username and password!");
-        }
-       }).catch((error) => {
-          console.error('There has been a problem with your fetch operation:', error);
-      });;
+    //     if(response.token !=''){
+    //         setToken(response.token);
+    //         navigation.navigate('Home');
+    //     }
+    //     else
+    //     {
+    //         alert("Please enter correct username and password!");
+    //     }
+    //    }).catch((error) => {
+    //       console.error('There has been a problem with your fetch operation:', error);
+    //   });;
 
       
   }

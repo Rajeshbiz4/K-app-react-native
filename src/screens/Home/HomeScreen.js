@@ -1,7 +1,6 @@
 import React, { useLayoutEffect ,useEffect } from "react";
 import { FlatList, Text, View, TouchableHighlight, Image,AsyncStorage } from "react-native";
 import styles from "./styles";
-import { recipes } from "../../data/dataArrays";
 import MenuImage from "../../components/MenuImage/MenuImage";
 import { getCategoryName } from "../../data/MockDataAPI";
 import axios from 'axios';
@@ -9,12 +8,11 @@ import axios from 'axios';
 const _retrieveData = async () => {
   try {
     const userToken = await AsyncStorage.getItem("token");
-    //alert(userToken);
     if (userToken !== null) {
-      console.warn(userToken);
+      //console.warn(userToken);
     }
   } catch (error) {
-    console.error("error: "+error);
+    //console.error("error: "+error);
   }
 };
 
@@ -39,16 +37,15 @@ const apiBaseURL = "http://34.217.126.91:8000";
 
 
 
-  const onPressRecipe = (item) => {
-    navigation.navigate("Recipe", { item });
+  const onPressMenusList = (item) => {
+    navigation.navigate("MemberList", { item });
   };
 
-  const renderRecipes = ({ item }) => (
-    <TouchableHighlight underlayColor="rgba(73,182,77,0.9)" onPress={() => onPressRecipe(item)}>
+  const renderMenusList = ({ item }) => (
+    <TouchableHighlight underlayColor="rgba(73,182,77,0.9)" onPress={() => onPressMenusList(item)}>
       <View style={styles.container}>
-        <Image style={styles.photo} source={{ uri: item.photo_url }} />
+        <Image style={styles.photo} source={item.photo_url} />
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
       </View>
     </TouchableHighlight>
   );
@@ -56,7 +53,97 @@ const apiBaseURL = "http://34.217.126.91:8000";
   return (
     
     <View>
-      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={recipes} renderItem={renderRecipes} keyExtractor={(item) => `${item.recipeId}`} />
+      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={MenusList} renderItem={renderMenusList} keyExtractor={(item) => `${item.recipeId}`} />
     </View>
   );
 }
+
+const MenusList = [
+  {
+    recipeId: 1,
+    categoryId: 3,
+    title: 'Member List',
+    photo_url: require('../../../assets/member.jpg'),
+    time: '15',
+    description:'',
+    data:[
+      {
+        id:1,
+        firstName:'Rajesh',
+        lastName:'Pandhare',
+        designation:'Sarpanch',
+        period:'2022-2027',
+        isActive:1,
+        photo_url:require('../../../assets/member.jpg'),
+      },
+      {
+        id:2,
+        firstName:'Appasaheb',
+        lastName:'Tawale',
+        designation:'Up Sarpanch',
+        period:'2022-2027',
+        isActive:1,
+        photo_url:require('../../../assets/member.jpg'),
+      },
+      {
+        id:3,
+        firstName:'Shankar',
+        lastName:'Shendge',
+        designation:'Sadasya',
+        period:'2022-2027',
+        isActive:1,
+        photo_url:require('../../../assets/member.jpg'),
+      },
+      {
+        id:4,
+        firstName:'Abhay',
+        lastName:'Jadhav',
+        designation:'Sadasya',
+        period:'2022-2027',
+        isActive:1,
+        photo_url:require('../../../assets/member.jpg'),
+      },
+      {
+        id:4,
+        firstName:'Datta',
+        lastName:'Kolekar',
+        designation:'Sadasya',
+        period:'2022-2027',
+        isActive:0,
+        photo_url:require('../../../assets/member.jpg'),
+      }
+    ]
+  },
+  {
+    recipeId: 2,
+    categoryId: 3,
+    title: 'Schemes',
+    photo_url: require('../../../assets/scheme.png'),
+    time: '15',
+    description:'',
+  },
+  {
+    recipeId: 3,
+    categoryId: 3,
+    title: 'Officer List',
+    photo_url: require('../../../assets/officer.jpg'),
+    time: '15',
+    description:'',
+  },
+  {
+    recipeId: 4,
+    categoryId: 3,
+    title: 'About Village',
+    photo_url: require('../../../assets/logo.png'),
+    time: '15',
+    description:'',
+  },
+  {
+    recipeId: 5,
+    categoryId: 3,
+    title: 'Announcement',
+    photo_url: require('../../../assets/announcement.png'),
+    time: '15',
+    description:'',
+  },
+];

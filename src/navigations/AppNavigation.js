@@ -11,6 +11,7 @@ import IngredientScreen from '../screens/Ingredient/IngredientScreen';
 import SearchScreen from '../screens/Search/SearchScreen';
 import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsDetailsScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
+import MemberListComponent from '../screens/Shared/MemberListComponent';
 
  const Stack = createStackNavigator();
 
@@ -28,8 +29,8 @@ function MainNavigator() {
     >
       <Stack.Screen name='Login' component={LoginScreen} />
       <Stack.Screen name='Home' component={HomeScreen} />
+      <Stack.Screen name='MemberList' component={MemberListComponent}/>
       <Stack.Screen name='Categories' component={CategoriesScreen}/>
-      <Stack.Screen name='Recipe' component={RecipeScreen}/>
       <Stack.Screen name='RecipesList' component={RecipesListScreen} />
       <Stack.Screen name='Ingredient' component={IngredientScreen} />
       <Stack.Screen name='Search' component={SearchScreen} />
