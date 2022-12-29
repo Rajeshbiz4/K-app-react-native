@@ -1,13 +1,29 @@
-import React, { useLayoutEffect } from "react";
-import { FlatList, Text, View, TouchableHighlight, Image } from "react-native";
+import React, { useLayoutEffect ,useEffect } from "react";
+import { FlatList, Text, View, TouchableHighlight, Image,AsyncStorage } from "react-native";
 import styles from "./styles";
 import { recipes } from "../../data/dataArrays";
 import MenuImage from "../../components/MenuImage/MenuImage";
 import { getCategoryName } from "../../data/MockDataAPI";
+import axios from 'axios';
+
+const _retrieveData = async () => {
+  try {
+    const userToken = await AsyncStorage.getItem("token");
+    //alert(userToken);
+    if (userToken !== null) {
+      console.warn(userToken);
+    }
+  } catch (error) {
+    console.error("error: "+error);
+  }
+};
 
 export default function HomeScreen(props) {
-  const { navigation } = props;
-
+const { navigation } = props;
+_retrieveData();
+const username ='9503907131';
+const password = 'FXite';
+const apiBaseURL = "http://34.217.126.91:8000";
   useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
@@ -20,6 +36,8 @@ export default function HomeScreen(props) {
       headerRight: () => <View />,
     });
   }, []);
+
+
 
   const onPressRecipe = (item) => {
     navigation.navigate("Recipe", { item });
@@ -36,6 +54,7 @@ export default function HomeScreen(props) {
   );
 
   return (
+    
     <View>
       <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={recipes} renderItem={renderRecipes} keyExtractor={(item) => `${item.recipeId}`} />
     </View>

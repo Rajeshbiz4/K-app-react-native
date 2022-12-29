@@ -10,12 +10,13 @@ import DrawerContainer from '../screens/DrawerContainer/DrawerContainer';
 import IngredientScreen from '../screens/Ingredient/IngredientScreen';
 import SearchScreen from '../screens/Search/SearchScreen';
 import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsDetailsScreen';
+import LoginScreen from '../screens/Login/LoginScreen';
 
  const Stack = createStackNavigator();
 
 function MainNavigator() {
   return(
-    <Stack.Navigator
+    <Stack.Navigator 
       screenOptions={{
           headerTitleStyle: {
             fontWeight: 'bold',
@@ -25,6 +26,7 @@ function MainNavigator() {
           }
       }}
     >
+      <Stack.Screen name='Login' component={LoginScreen} />
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='Categories' component={CategoriesScreen}/>
       <Stack.Screen name='Recipe' component={RecipeScreen}/>
@@ -44,14 +46,14 @@ function DrawerStack() {
   return(
     <Drawer.Navigator
       drawerPosition='left'
-      initialRouteName='Main'
+      initialRouteName='Login'
       drawerStyle={{
         width: 250
       }}
       screenOptions={{headerShown: false}}
       drawerContent={({navigation})=> <DrawerContainer navigation={navigation}/>}
     >
-      <Drawer.Screen name='Main' component={MainNavigator} />
+      <Drawer.Screen name='Login' component={MainNavigator} />
     </Drawer.Navigator>
   )
 } 
@@ -59,7 +61,7 @@ function DrawerStack() {
 
  export default function AppContainer() {
   return(
-    <NavigationContainer>
+    <NavigationContainer dr>
       <DrawerStack/>
     </NavigationContainer>
   )
